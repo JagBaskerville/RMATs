@@ -60,7 +60,7 @@ If it is too long, it will lead to insufficient information and the output will 
   > conda install rmats
 ### 2. Activate env
   > conda activate envName
-### 3.1 BAM file rMATs analysis (paired-end reads, readLength=100, gtf annatation from Gencode)
+### 3.1 BAM file rMATs analysis (paired-end reads, readLength=100, gtf annotation from Gencode)
 #### Create group file
 > echo /path/to/group1_1.bam,/path/to/group1_2.bam > group1
 > echo /path/to/group2_1.bam,/path/to/group2_2.bam > group2
@@ -84,3 +84,34 @@ If it is too long, it will lead to insufficient information and the output will 
 > rmats.py --s1 fastqGroup1 --s2 fastqGroup2 --bi path/to/indexDir --gtf gencode.gtf -od fqOutput --tmp fqOutput/tmp -t paired --readLength 100 --nthread 4
 ### End analysis and close virtual environment
 > conda deactivate
+
+## sashimii plot
+rMATs have designed tools can draw the rMATs result and the coverage data of BAM file into a sashimii plot.
+### Create env in conda
+> conda create n envName python=2 bedtools samtools pysam
+### Install matplotlib
+> pip install matplotlib==2.0.2
+### Install scipy
+> pip install scipy
+### Install rmats2sashimiplot
+> pip install rmats2sashimiplot
+### input: two modes: even mode and custom mode (required gff3 annotation)
+* rMATs event input is [AS_Event].MATS.JC.txt
+* It is recommended to use R, python, excel to filter those events first (FDR<0.05, specific target), save as a new file but maintain the tsv format
+* The alignment result part accepts SAM [–s1/–s2] or BAM [–b1/–b2]
+You can directly input the path. It does not have to generate a path text file like rMATs. The group and order of the input path must be consistent with running rMATs, otherwise the picture will be reversed.
+## Example
+### rmats2sashimiplot activate
+> conda activate envName
+### Making the output folder
+> mkdir outFolder
+### 
+> rmats2sashimiplot \
+>   --l1 shSF3B4 \ # label the group1 name (freely)
+>   --l2 ctrl \ # label the group2 name
+>   --o outFolder/ \
+>   --t SE \ #Event type
+>   -e filtered.MATS.JC.txt \ # Filtered results file from [AS_Event].MATS.JC.txt
+>   --b1 /path/to/group1_1.bam,/path/to/group1_2.bam \
+>   --b2 /path/to/group2_1.bam,/path/to/group2_2.bam \
+> 
