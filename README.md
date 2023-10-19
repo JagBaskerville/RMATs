@@ -17,7 +17,7 @@ To index the genome with STAR for RNA-seq analysis, the sjdbOverhang option need
 
  ## bam
  * The aligned bam file do not need to be aligned again --> can be analyzed directly.
- * The alignment must be genome-base = align directly to chromosome coordinates and only non specific transcripts will hace splicing information
+ * The alignment must be genome-base = align directly to chromosome coordinates and non specific transcripts --> splicing information
  * Need to prepare: –b1 [Group 1 bam], –b2 [Group 2 bam]
 –s1, –s2, –b1, –b2 are .txt files, and the content is a combination of paths to the same set of files, separated by ",".
 pair-ended fastq separated by ":"
