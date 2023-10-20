@@ -8,6 +8,8 @@
   https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf
 ### Building the STAR index
 To index the genome with STAR for RNA-seq analysis, the sjdbOverhang option needs to be specified for detecting possible splicing sites. It usually equals to the minimum read size minus 1; it tells STAR what is the maximum possible stretch of sequence that can be found on one side of a spicing site
+#### Path to hg38 gtf file: /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf
+#### Path to hg38 fasta file: /data/Data/Database/00.human_reference_genome/hg38/hg38.fa
 > STAR \  
  --runMode genomeGenerate \  
  --genomeDir /path/to/genomeDir \  
