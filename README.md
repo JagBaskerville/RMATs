@@ -55,7 +55,11 @@ If it is too long, it will lead to insufficient information and the output will 
 * -variable-read-length:
 + The read length can vary due to the quality control process (trimming, filter), and this parameter allows rmats to use the longest read length as much as possible, helping to address this issue.
 * -nthread: Multi-threaded computing settings, rmats itself has good performance and does not need to be set to many cores
-
+### Unzip the fastq.gz
+> for file in *.fastq.gz; do
+    echo "Processing $file..."
+    seqtk seq -a "$file" > "${file%.fastq.gz}.fa"
+done
 ## Example
 ### 1.1 conda create environment + download rMATs (envName: virtual env name, freely change it)
 > conda create -n envName rmats
