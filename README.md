@@ -91,6 +91,8 @@ done
 > rmats.py --s1 fastqGroup1 --s2 fastqGroup2 --bi path/to/indexDir --gtf gencode.gtf -od fqOutput --tmp fqOutput/tmp -t paired --readLength 100 --nthread 4
 * For example
 >  rmats.py --s1 /home/Giang/raw_RNA_seq_practice/ctrl.txt --s2 /home/Giang/raw_RNA_seq_practice/test.txt --bi /home/Giang/raw_RNA_seq_practice/hg38_index/ --gtf /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf --od /home/Giang/raw_RNA_seq_practice/output/ -t paired --readLength 100 --nthread 4
+> rmats.py --s1 /home/Giang/raw_RNA_seq_practice/ctrl1.txt --s2 /home/Giang/raw_RNA_seq_practice/test1.txt --bi /home/Giang/raw_RNA_seq_practice/hg38_index/ --gtf /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf --od /home/Giang/raw_RNA_seq_practice/output/ -t paired --readLength 100 --nthread 4
+
 ### End analysis and close virtual environment
 > conda deactivate
 
