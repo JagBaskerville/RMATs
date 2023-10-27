@@ -126,5 +126,36 @@ You can directly input the path. It does not have to generate a path text file l
 >   --b1 /path/to/group1_1.bam,/path/to/group1_2.bam \
 >   --b2 /path/to/group2_1.bam,/path/to/group2_2.bam \
 ### Output
-![image](https://github.com/JagBaskerville/RMATs/assets/147906487/836c5abc-f8d6-4185-b9ac-c95add5906f7)
+![image](https://github.com/JagBaskerville/RMATs/assets/147906487/b63cda2d-cb58-4bda-a2fe-66a5fd5e0786)
+5 Alternative splicing events:
+* SE: skipping exon
+* A5SS: Alternative 5'SS
+* A3SS: alternative 3'SS
+* MXE: mutually exclusive exons
+* RI: retained intron
+- The number of supporting reads can be counted by junction reads only (JC) or by both junction and exon reads (JCEC)
+- In --od direction:
++ [AS_Event].MATS.JC.txt: list of events and read counts, only count splice junction read
++ [AS_Event].MATS.JCEC.txt:  list of events and read counts, count both splice junction and exon body reads
++ fromGTF.[AS_Event].txt: All identified AS events from GTF and RNA
++ fromGTF.novelJunction.[AS_Event].txt: AS events were identified only after considering the RNA --> not include events with unannotated splice site
++ fromGTF.novelSpliceSite.[AS_Event].txt: only events that include an unannotated SS
++ JC.raw.input.[AS_Event].txt: event counts only reads that span junctions
++  JCEC.raw.input.[AS_Event].txt: event counts including reads span junction and reads not cross an exon boundary
++  Column
+- ID: rMATS event id
+- GeneID
+- geneSymbol: gene name
+- chr: chromosome
+- strand: strand of the gene
+- IJC_SAMPLE_1: inclusion counts for sample 1. Replicates are comma separated
+- SJC_SAMPLE_1: skipping counts for sample 1. Replicates are comma separated
+- IncFormlen: Length of inclusion form, used for normalization
+- SkipFormLen: length of skipping form, used for normalization
+- P value: significance of splicing difference between 2 sample groups (Only if statistical model is on)
+- FDR: False Discovery Rate calculated from p-value
+- IncLevel1:inclusion level for sample 1. Replicates are comma separated (from normalized counts)
+- IncLevel2: inclusion level for sample 2. Replicates are comma separated (from normalized counts)
+- IncLevel2: average(IncLevel1) - average(IncLevel2)
+- 
 
