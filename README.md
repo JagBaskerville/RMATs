@@ -125,4 +125,6 @@ You can directly input the path. It does not have to generate a path text file l
 >   -e filtered.MATS.JC.txt \ # Filtered results file from [AS_Event].MATS.JC.txt
 >   --b1 /path/to/group1_1.bam,/path/to/group1_2.bam \
 >   --b2 /path/to/group2_1.bam,/path/to/group2_2.bam \
-> 
+### Output
+![image](https://github.com/JagBaskerville/RMATs/assets/147906487/836c5abc-f8d6-4185-b9ac-c95add5906f7)
+
