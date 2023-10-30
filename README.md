@@ -87,11 +87,14 @@ done
 > mkdir fqOutput fqOutput/tmp
 #### Create a STAR genome index. If there is no STAR in the virtual environment, you can use "conda install star" to install it.
 > STAR --runMode genomeGenerate --genomeDir path/to/indexDir --genomeFastaFiles hg 38.fasta --sjdbGTFfile gencode.gtf --sjdb Overhang 99
+>
+* For example
+> STAR --runMode genomeGenerate --genomeDir /home/Giang/raw_RNA_seq_practice/hg38_index1/ --genomeFastaFiles /data/Data/Database/00.human_reference_genome/hg38/hg38.fa --sjdbGTFfile /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf --sjdbOverhang 99
+
 #### rMATs analysis
 > rmats.py --s1 fastqGroup1 --s2 fastqGroup2 --bi path/to/indexDir --gtf gencode.gtf -od fqOutput --tmp fqOutput/tmp -t paired --readLength 100 --nthread 4
 * For example
->  rmats.py --s1 /home/Giang/raw_RNA_seq_practice/ctrl.txt --s2 /home/Giang/raw_RNA_seq_practice/test.txt --bi /home/Giang/raw_RNA_seq_practice/hg38_index/ --gtf /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf --od /home/Giang/raw_RNA_seq_practice/output/ -t paired --readLength 100 --nthread 4
-> rmats.py --s1 /home/Giang/raw_RNA_seq_practice/ctrl1.txt --s2 /home/Giang/raw_RNA_seq_practice/test1.txt --bi /home/Giang/raw_RNA_seq_practice/hg38_index/ --gtf /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf --od /home/Giang/raw_RNA_seq_practice/output/ -t paired --readLength 100 --nthread 4
+> rmats.py --s1 /home/Giang/raw_RNA_seq_practice/ctrl1.txt --s2 /home/Giang/raw_RNA_seq_practice/test1.txt --bi /home/Giang/raw_RNA_seq_practice/hg38_index/ --gtf /data/Data/Database/16.ENCODE_shRNA_rMATs/01.rMATs_result/file/GENCODE_V29_anno.gtf --od /home/Giang/raw_RNA_seq_practice/output/ --tmp /home/Giang/raw_RNA_seq_practice/output/tmp  -t paired --readLength 100 --nthread 4
 
 ### End analysis and close virtual environment
 > conda deactivate
