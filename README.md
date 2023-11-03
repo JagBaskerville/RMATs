@@ -17,6 +17,19 @@ To index the genome with STAR for RNA-seq analysis, the sjdbOverhang option need
  --sjdbGTFfile /path/to/annotations.gtf \  
  --sjdbOverhang ReadLength-1
 
+### Use fastp to do the quality control for fasta file
+> /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ctrl_bam_file/QC_bam_file$ fastp --in1 /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ENCFF802OSJ_1_R1.fastq --in2 /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ENCFF566QBO_1_R2.fastq --out1 ENCFF802OSJ_1_R1_trimmed.fastq --out2 ENCFF566QBO_1_R2_trimmed.fastq
+#### Test data
+> /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/test_bam_file/QC_test_bam_files$ fastp --in1 /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/ENCFF735NFI_1_R1.fastq --in2 /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/ENCFF578JJD_1_R2.fastq --out1 ENCFF735NFI_1_R1_trimmed.fastq --out2 ENCFF578JJD_1_R2_trimmed.fastq
+### Create BAM files using STAR alignment
+* Ctrl
+> STAR --runThreadN 6 --genomeDir /home/Giang/raw_RNA_seq_practice/RMATS2/hg38_index1/ --readFilesIn /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ctrl_bam_file/QC_bam_file/trimmed_fastp_files/ENCFF802OSJ_1_R1_trimmed.fastq /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ENCFF566QBO_1_R2.fastq --outSAMtype BAM SortedByCoordinate --outFileNamePrefix ctrl1
+> STAR --runThreadN 6 --genomeDir /home/Giang/raw_RNA_seq_practice/RMATS2/hg38_index1/ --readFilesIn /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ctrl_bam_file/QC_bam_file/trimmed_fastp_files/ENCFF330LGV_2_R1_trimmed.fastq /data/Data/ang_chu_data/raw_RNA_seq/HepG2_non_specific_target/ctrl_bam_file/QC_bam_file/trimmed_fastp_files/ENCFF232USH_2_R2_trimmed.fastq --outSAMtype BAM SortedByCoordinate --outFileNamePrefix ctrl2
+* Test
+>  STAR --runThreadN 6 --genomeDir /home/Giang/raw_RNA_seq_practice/RMATS2/hg38_index1/ --readFilesIn /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/test_bam_file/QC_test_bam_files/trimmed_fastq_files/ENCFF735NFI_1_R1_trimmed.fastq /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/test_bam_file/QC_test_bam_files/trimmed_fastq_files/ENCFF578JJD_1_R2_trimmed.fastq --outSAMtype BAM SortedByCoordinate --outFileNamePrefix test1
+> STAR --runThreadN 6 --genomeDir /home/Giang/raw_RNA_seq_practice/RMATS2/hg38_index1/ --readFilesIn /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/test_bam_file/QC_test_bam_files/trimmed_fastq_files/ENCFF747JAG_2_R1_trimmed.fastq /data/Data/ang_chu_data/raw_RNA_seq/HepG2_SAP30BP_KD/test_bam_file/QC_test_bam_files/trimmed_fastq_files/ENCFF058PDK_2_R2_trimmed.fastq --outSAMtype BAM SortedByCoordinate --outFileNamePrefix test2
+> 
+> 
  ## bam
  * The aligned bam file do not need to be aligned again --> can be analyzed directly.
  * The alignment must be genome-base = align directly to chromosome coordinates and non specific transcripts --> splicing information
@@ -77,8 +90,7 @@ done
 > rmats.py --b1 group1 --b2 group2 --gtf gencode.gtf --od output --tmp output/tmp
 -t paired --readLength 100 --nthread 4
 #### rMATs analysis with variable readLength
-> rmats.py --b1 group1 --b2 group2 --gtf gencode.gtf --od output --tmp output/tmp
--t paired --readLength 100 --variable-read-length --nthread 4
+> rmats.py --b1 group1 --b2 group2 --gtf gencode.gtf --od output --tmp output/tmp -t paired --readLength 100 --variable-read-length --nthread 4
 ### 3.2 fastq file rMATs analysis (paired-end reads, readLength=100, Gencode gtf annotation)
 #### Create group file
 > echo /path/to/group1_1_R1.fastq:/path/to/group1_1_R2.fastq, /path/to/group1_2_R1.fastq:/path/to/group1_2_R2.fastq > fastqGroup1
