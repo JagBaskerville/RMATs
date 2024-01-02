@@ -173,4 +173,5 @@ You can directly input the path. It does not have to generate a path text file l
 - IncLevel2: inclusion level for sample 2. Replicates are comma separated (from normalized counts)
 - IncLevel2: average(IncLevel1) - average(IncLevel2)
 - 
-
+### Change RMATS command line
+/home/Giang/anaconda3/envs/rMATs/bin/STAR-avx2   --runThreadN 6   --genomeDir /home/Giang/raw_RNA_seq_practice/RMATS3_QC_bam/hg38_index1/   --readFilesIn /data/Data/Giang/trimmed_fastq/trimmed_test_fastq/ENCFF735NFI_1_R1_trimmed.fastq   /data/Data/Giang/trimmed_fastq/trimmed_test_fastq/ENCFF578JJD_1_R2_trimmed.fastq      --outFileNamePrefix test1   --outSAMtype BAM   SortedByCoordinate      --outSJfilterOverhangMin 20   12   12   12      --alignIntronMin 10   --alignIntronMax 500000   --alignEndsType EndToEnd
